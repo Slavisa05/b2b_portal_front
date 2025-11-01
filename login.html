@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <meta name="description" content="ogin stranica za korisnike">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section class="login-section">
+            <div class="logo-container">
+                <img src="slike/logo_nobg.png" alt="Logo firme" class="logo">
+            </div>
+
+            <div class="login-card">
+                <h1>Ulogujte se</h1>
+                <form action="/login" method="post">
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="input-with-icon">
+                        <label for="password">Šifra:</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="password" name="password" required aria-describedby="pw-toggle-desc">
+                            <button type="button" class="pw-toggle" id="pw-toggle" aria-pressed="false" aria-label="Prikaži šifru">
+                                <!-- eye (closed by default) -->
+                                <svg id="pw-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-row remember-forgot">
+                        <label class="remember">
+                            <input type="checkbox" id="remember" name="remember">
+                            <span>Zapamti me</span>
+                        </label>
+                        <a href="#" class="forgot-link" id="forgot-link">Zaboravili ste šifru?</a>
+                    </div>
+
+                    <button class="primary-button" type="submit">Uloguj se</button>
+                </form>
+
+                <!-- FORGOT PASSWORD I REMEMBER ME -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Forgot password modal (frontend only) -->
+    <div id="forgot-modal" class="modal" aria-hidden="true">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <h2 id="modal-title">Zaboravili ste šifru?</h2>
+            <p>Unesite email na koji ćemo poslati upute (simulirano):</p>
+            <form id="forgot-form">
+                <input type="email" id="forgot-email" name="forgot-email" placeholder="Vaš email" required>
+                <div class="modal-actions">
+                    <button type="submit" class="primary-button">Pošalji</button>
+                    <button type="button" class="secondary-button" id="modal-close">Zatvori</button>
+                </div>
+                <p id="forgot-result" class="forgot-result" aria-live="polite"></p>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

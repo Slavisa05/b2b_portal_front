@@ -1,3 +1,122 @@
+// Small helper: load external HTML fragments (navbar)
+function loadNavbar() {
+	const placeholder = document.getElementById('nav-placeholder');
+	if (!placeholder) return; // no placeholder on this page
+
+	fetch('navbar.html', { cache: 'no-store' })
+		.then(function (res) {
+			if (!res.ok) throw new Error('Network response was not ok');
+			return res.text();
+		})
+		.then(function (html) {
+			placeholder.innerHTML = html;
+			// initialize navbar widgets (cart toggle, etc.) after insertion
+			try { initNavbarWidgets(); } catch (e) { console.error('initNavbarWidgets error', e); }
+		})
+		.catch(function (err) {
+			console.error('Failed to load navbar:', err);
+		});
+}
+
+// try to load navbar fragment (if placeholder exists)
+try { loadNavbar(); } catch (e) { console.error(e); }
+
+// Initialize cart/menu behaviors for the injected navbar
+function initNavbarWidgets() {
+	const cartButton = document.getElementById('cart-button');
+	const cartMenu = document.getElementById('cart-menu');
+	const cartClose = document.getElementById('cart-close');
+
+	if (!cartButton || !cartMenu) return;
+
+	function openCart() {
+		cartMenu.setAttribute('aria-hidden', 'false');
+		cartButton.setAttribute('aria-expanded', 'true');
+		// focus first actionable item for keyboard users
+		const first = cartMenu.querySelector('.cart-actions a');
+		if (first) first.focus();
+	}
+
+	function closeCart() {
+		cartMenu.setAttribute('aria-hidden', 'true');
+		cartButton.setAttribute('aria-expanded', 'false');
+		cartButton.focus();
+	}
+
+	cartButton.addEventListener('click', function (e) {
+		const expanded = cartButton.getAttribute('aria-expanded') === 'true';
+		if (expanded) closeCart(); else openCart();
+	});
+
+	if (cartClose) cartClose.addEventListener('click', closeCart);
+
+	// Close cart when clicking outside
+	document.addEventListener('click', function (e) {
+		if (!cartMenu.contains(e.target) && !cartButton.contains(e.target)) {
+			if (cartMenu.getAttribute('aria-hidden') === 'false') closeCart();
+		}
+	});
+
+	// Close on Escape
+	document.addEventListener('keydown', function (e) {
+		if (e.key === 'Escape') {
+			if (cartMenu.getAttribute('aria-hidden') === 'false') closeCart();
+		}
+	});
+
+	// Example: update cart count if there's data in localStorage (simple demo)
+	try {
+		const countEl = document.getElementById('cart-count');
+		const items = JSON.parse(localStorage.getItem('cart') || '[]');
+		if (countEl) countEl.textContent = items.length || 0;
+	} catch (e) { /* ignore parse errors */ }
+
+	// MEGA-MENU: categories dropdown
+	try {
+		const catBtn = document.getElementById('categories-button');
+		const mega = document.getElementById('mega-menu');
+		if (catBtn && mega) {
+			function openMega() {
+				mega.setAttribute('aria-hidden', 'false');
+				catBtn.setAttribute('aria-expanded', 'true');
+			}
+			function closeMega() {
+				mega.setAttribute('aria-hidden', 'true');
+				catBtn.setAttribute('aria-expanded', 'false');
+			}
+
+			catBtn.addEventListener('click', function (e) {
+				e.preventDefault();
+				const expanded = catBtn.getAttribute('aria-expanded') === 'true';
+				if (expanded) closeMega(); else openMega();
+			});
+
+			// keyboard support
+			catBtn.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') return closeMega();
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					catBtn.click();
+				}
+			});
+
+			// close on outside click
+			document.addEventListener('click', function (e) {
+				if (!mega.contains(e.target) && !catBtn.contains(e.target)) {
+					if (mega.getAttribute('aria-hidden') === 'false') closeMega();
+				}
+			});
+
+			// close on Escape
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') {
+					if (mega.getAttribute('aria-hidden') === 'false') closeMega();
+				}
+			});
+		}
+	} catch (e) { /* ignore if elements absent */ }
+}
+
 // Password visibility toggle
 document.addEventListener('DOMContentLoaded', function () {
 	const pwInput = document.getElementById('password');

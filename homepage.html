@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <meta name="description" content="Ovo je homepage sajta">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div id="nav-placeholder"></div>
+
+    <main>
+        <section class="homepage-hero-section">
+            <div class="category-line-hero">
+                <a class="category-link" href="homepage.html">Video nadzor</a>
+                <a class="category-link" href="homepage.html">Interfoni</a>
+                <a class="category-link" href="homepage.html">Led paneli</a>
+                <a class="category-link" href="homepage.html">Led rasveta</a>
+            </div>
+
+            <!-- Hero Slider -->
+            <div class="hero-slider" id="heroSlider">
+                <div class="slider-container">
+                    <!-- Slides -->
+                    <div class="slide active" style="background-image: url('slike/s1.webp');"></div>
+                    <div class="slide" style="background-image: url('slike/s2.webp');"></div>
+                    <div class="slide" style="background-image: url('slike/s3.webp');"></div>
+                    <div class="slide" style="background-image: url('slike/s4.webp');"></div>
+                </div>
+
+                <!-- Slide Indicators -->
+                <div class="slider-indicators">
+                    <button class="indicator active" aria-label="Slika 1"></button>
+                    <button class="indicator" aria-label="Slika 2"></button>
+                    <button class="indicator" aria-label="Slika 3"></button>
+                    <button class="indicator" aria-label="Slika 3"></button>
+                </div>
+            </div>
+            
+        </section>
+    </main>
+
+    <!-- Featured Categories -->
+    <section class="featured-categories">
+        <h2>Popularne Kategorije</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image" style="background-image: url('slike/p1.jpg');">
+                    <div class="category-overlay">
+                        <h3>Video Nadzor</h3>
+                        <div class="quick-links">
+                            <a href="#">IP Kamere</a>
+                            <a href="#">DVR/NVR</a>
+                            <a href="#">Analogni sistemi</a>
+                        </div>
+                        <a href="#" class="category-btn">Pregledaj sve</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image" style="background-image: url('slike/p2.jpg');">
+                    <div class="category-overlay">
+                        <h3>Smart Home</h3>
+                        <div class="quick-links">
+                            <a href="#">Alarmi</a>
+                            <a href="#">Kontrola pristupa</a>
+                            <a href="#">Automatizacija</a>
+                        </div>
+                        <a href="#" class="category-btn">Pregledaj sve</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image" style="background-image: url('slike/p3.jpg');">
+                    <div class="category-overlay">
+                        <h3>LED Rasveta</h3>
+                        <div class="quick-links">
+                            <a href="#">Paneli</a>
+                            <a href="#">Reflektori</a>
+                            <a href="#">Trake</a>
+                        </div>
+                        <a href="#" class="category-btn">Pregledaj sve</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image" style="background-image: url('slike/p4.jpg');">
+                    <div class="category-overlay">
+                        <h3>Interfoni</h3>
+                        <div class="quick-links">
+                            <a href="#">Video interfoni</a>
+                            <a href="#">Audio interfoni</a>
+                            <a href="#">IP sistemi</a>
+                        </div>
+                        <a href="#" class="category-btn">Pregledaj sve</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-proposition">
+        <h2>Zašto Odabrati Nas?</h2>
+        <div class="value-grid">
+            <!-- Veleprodajne cene -->
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3>Veleprodajne Cene</h3>
+                <p>Konkurentne B2B cene sa posebnim popustima za velike porudžbine. Direktno snabdevanje od proizvođača.</p>
+            </div>
+
+            <!-- Brza isporuka -->
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3>Brza Isporuka</h3>
+                <p>Isporuka širom Srbije u roku od 24-48h. Mogućnost ekspres dostave i preuzimanja robe u našim distributivnim centrima.</p>
+            </div>
+
+            <!-- Tehnička podrška -->
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </div>
+                <h3>Tehnička Podrška</h3>
+                <p>Stručna podrška 24/7. Konsultacije, planiranje projekata i pomoć pri instalaciji. Obuka za korišćenje opreme.</p>
+            </div>
+
+            <!-- Garantni rok -->
+            <div class="value-card">
+                <div class="value-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3>Garantni Rok</h3>
+                <p>Minimalno 2 godine garancije na svu opremu. Servis u garantnom roku i van njega. Zamenski uređaji u slučaju kvara.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="slider.js"></script>
+</body>
+</html>

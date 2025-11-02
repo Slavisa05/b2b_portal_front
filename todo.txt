@@ -1,0 +1,46 @@
+1. Trending Products
+
+Carousel/grid najprodavanijih proizvoda
+Prikaz cena (za registrovane korisnike)
+Quick-view funkcionalnost
+Filteri po kategorijama
+
+2. B2B Solutions Sekcija
+
+Split-screen layout
+Levo: Informacije o B2B programu
+Desno: Forma za registraciju poslovnih korisnika
+
+3. Brand Showcase
+
+Logo slider sa brendovima koje zastupate
+Light/minimal dizajn
+Auto-scroll funkcionalnost
+
+4. Recent Projects/Case Studies
+
+Grid sa skorašnjim velikim projektima
+Before/After prikaz za instalacije
+Kratki opisi sa ključnim benefitima
+
+5. News & Resources
+
+Blog posts grid (3-4 najnovija)
+Tehnički resursi/datasheets
+Upcoming webinars/events
+
+6. Contact CTA
+
+Full-width sekcija
+Jasni pozivi na akciju za:
+Zahtev za ponudu
+Tehnička podrška
+Postani partner
+
+10. Footer
+
+Kategorije proizvoda
+Korisni linkovi
+Kontakt informacije
+Newsletter signup
+Social media linkovi

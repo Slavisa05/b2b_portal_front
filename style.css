@@ -41,8 +41,13 @@ h3 {
     line-height: 1.5rem;
 }
 
-p {
+.short {
     width: 80%;
+}
+
+.centered {
+    text-align: center;
+    align-items: center;
 }
 
 /* SECTIONS, DIVS, BUTTONS... */
@@ -69,6 +74,7 @@ section {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .grid-3-col {
@@ -76,6 +82,23 @@ section {
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-4-col {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.grid-5-col {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
 }
 
 .centered-cell {
@@ -142,8 +165,14 @@ button, input, textarea, select {
 
 .secondary-button:hover {
     background-color: var(--secondary);
-    color: var(--bg);
+    color: white;
     transform: translateY(-1px);
+}
+
+.secondary-button.active {
+    background-color: var(--secondary);
+    color: white;
+    margin-top: -10px;
 }
 
 /* NAVBAR */
@@ -652,7 +681,7 @@ input {
 /* Value Proposition */
 .value-proposition {
     padding: 80px 5vw;
-    background-color: var(--bg);
+    background-color: var(--surface);
 }
 
 .value-proposition h2 {
@@ -718,64 +747,18 @@ input {
     width: 90%;
 }
 
-/* Trending Products */
-.trending-products {
-    padding: 80px 5vw;
-    background-color: var(--surface);
-}
-
-.trending-products h2 {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-/* Product Filters */
-.product-filters {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-    flex-wrap: wrap;
-}
-
-.filter-btn {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-    padding: 8px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-    background: var(--primary);
-    color: white;
-}
-
-/* Products Carousel */
-.products-carousel {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.products-container {
-    display: flex;
-    gap: 30px;
-    transition: transform 0.5s ease;
-}
+.featured-products {
+    padding: 5vh 0;
+} 
 
 .product-card {
-    flex: 0 0 300px;
-    background: var(--bg);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px; 
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px var(--hover);
     transition: transform 0.3s ease;
 }
 
@@ -879,3 +862,90 @@ input {
     background: var(--hover);
 }
 
+/* Contact CTA */
+.contact-cta {
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 36px 0;
+}
+
+.contact-cta .cta-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contact-cta .cta-text h2 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.contact-cta .cta-text p {
+    opacity: 0.95;
+    margin: 0;
+}
+
+.contact-cta .cta-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transition: all 0.18s ease;
+    cursor: pointer;
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.cta-quote {
+    background: #fff;
+    color: var(--text);
+}
+
+.cta-support {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.9);
+}
+
+.site-footer {
+    background: var(--surface);
+    color: var(--text);
+    padding: 40px 5vw;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.site-footer .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* FOOTER */
+footer {
+    padding: 5vh 5vw 2vh 5vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    background-color: var(--surface);
+}
+
+.footer-links {
+    list-style: none;
+}

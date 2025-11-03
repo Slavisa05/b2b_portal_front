@@ -21,6 +21,28 @@ function loadNavbar() {
 // try to load navbar fragment (if placeholder exists)
 try { loadNavbar(); } catch (e) { console.error(e); }
 
+// Small helper: load footer fragment (same pattern as navbar)
+function loadFooter() {
+	const placeholder = document.getElementById('footer-placeholder');
+	if (!placeholder) return;
+
+	fetch('footer.html', { cache: 'no-store' })
+		.then(function (res) {
+			if (!res.ok) throw new Error('Network response was not ok');
+			return res.text();
+		})
+		.then(function (html) {
+			placeholder.innerHTML = html;
+			// no special init required, but could wire footer widgets here
+		})
+		.catch(function (err) {
+			console.error('Failed to load footer:', err);
+		});
+}
+
+// try to load footer fragment (if placeholder exists)
+try { loadFooter(); } catch (e) { console.error(e); }
+
 // Initialize cart/menu behaviors for the injected navbar
 function initNavbarWidgets() {
 	const cartButton = document.getElementById('cart-button');
@@ -217,4 +239,89 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 
+});
+
+// TABS - dynamic tab population
+document.addEventListener('DOMContentLoaded', function () {
+	const tabBtns = document.querySelectorAll('.buttons-wrapper button');
+	const tabContent = document.querySelector('.tab-content');
+	const allDiv = document.getElementById('all-div');
+	if (!tabBtns.length || !tabContent || !allDiv) return;
+
+	// make sure the 'all' pane is active initially
+	allDiv.classList.add('active');
+
+	// helpers
+	function getSourceItems() {
+		return Array.from(allDiv.children);
+	}
+
+	function hideAllTabPanes() {
+		tabContent.querySelectorAll('.grid-3-col').forEach(d => {
+			d.classList.remove('active');
+			// hide panes explicitly so cloned/created panes don't stay visible
+			d.style.display = 'none';
+		});
+	}
+
+	function getOrCreatePane(name) {
+		const id = `${name}-div`;
+		let pane = document.getElementById(id);
+		if (!pane) {
+			pane = document.createElement('div');
+			pane.className = 'grid-3-col';
+			pane.id = id;
+			tabContent.appendChild(pane);
+		} else {
+			pane.innerHTML = ''; // reset before populating
+		}
+		return pane;
+	}
+
+	function populatePane(name) {
+		// if 'all' requested, just return the original allDiv
+		if (name === 'all') return allDiv;
+
+		const items = getSourceItems();
+		const pane = getOrCreatePane(name);
+
+		// Support elements that use data-category or data-tp-category
+		const filtered = items.filter(it => {
+			const cat = (it.dataset.category || it.dataset.tpCategory || '').toString();
+			return cat === name;
+		});
+
+		if (filtered.length === 0) {
+			pane.innerHTML = '<p class="empty-tab">Nema proizvoda u ovoj kategoriji.</p>';
+		} else {
+			filtered.forEach(el => pane.appendChild(el.cloneNode(true)));
+		}
+
+		return pane;
+	}
+
+	// wire buttons
+	tabBtns.forEach(btn => {
+		btn.addEventListener('click', () => {
+			const name = btn.id;
+
+			// update active button
+			tabBtns.forEach(b => b.classList.remove('active'));
+			btn.classList.add('active');
+
+			// show appropriate pane
+			hideAllTabPanes();
+			if (name === 'all') {
+				allDiv.classList.add('active');
+				allDiv.style.display = '';
+			} else {
+				allDiv.classList.remove('active');
+				allDiv.style.display = 'none';
+				const pane = populatePane(name);
+				pane.classList.add('active');
+				// ensure pane is visible (grid layout assumed)
+				pane.style.display = '';
+			}
+		});
+	});
 });

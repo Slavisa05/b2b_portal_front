@@ -13,6 +13,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
@@ -949,4 +953,373 @@ footer {
 
 .footer-links {
     list-style: none;
+}
+
+/* =====================
+   Responsive (Login page)
+   Default breakpoints: phones, tablets, desktops, large screens
+   ===================== */
+/* Make the login title scale smoothly without affecting other pages */
+.login-card h1 {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.2;
+}
+
+/* Phones (<= 599px) */
+@media (max-width: 599px) {
+    .login-section {
+        gap: 60px;
+    }
+    .logo-container {
+        height: 14vh;
+    }
+    .login-card {
+        width: 92vw;
+        max-width: 480px;
+    }
+    .login-card form {
+        width: 100%;
+    }
+    .form-row.remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+/* Tablets portrait (600px–899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+    .login-card {
+        width: 85vw;
+        max-width: 560px;
+    }
+}
+
+/* Tablets landscape / small desktops (900px–1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .login-card {
+        width: 60vw;
+        max-width: 640px;
+    }
+}
+
+/* Desktops (1200px–1535px) */
+@media (min-width: 1200px) and (max-width: 1535px) {
+    .login-card {
+        width: 40vw;
+        max-width: 700px;
+    }
+}
+
+/* Large screens (>= 1536px) */
+@media (min-width: 1536px) {
+    .login-card {
+        width: 32vw;
+        max-width: 760px;
+    }
+}
+
+/* =====================
+   Technical Support / Contact Page
+   ===================== */
+.support-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 80px 5vw;
+    text-align: center;
+}
+
+.support-hero-content h1 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-methods {
+    padding: 60px 5vw;
+    background: var(--surface);
+}
+
+.contact-grid {
+    margin-top: 40px;
+}
+
+.contact-method-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.method-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    color: var(--primary);
+}
+
+.method-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.contact-method-card h3 {
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+.contact-method-card p {
+    color: var(--text);
+    opacity: 0.7;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.contact-link {
+    display: block;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    margin: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: var(--hover);
+}
+
+.scroll-link {
+    cursor: pointer;
+}
+
+/* Support Form */
+.support-form-section {
+    padding: 80px 5vw;
+    background: white;
+}
+
+.form-wrapper {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    margin-bottom: 15px;
+}
+
+.form-header p {
+    color: var(--text);
+    opacity: 0.7;
+    width: 100%;
+}
+
+.support-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: auto;
+    height: auto;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.checkbox-label span {
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.link-text {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.link-text:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+.form-result {
+    margin-top: 15px;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    display: none;
+}
+
+.form-result.success {
+    display: block;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-result.error {
+    display: block;
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* FAQ Section */
+.faq-section {
+    padding: 80px 5vw;
+    background: var(--surface);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.faq-item {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.faq-item h3 {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.faq-item p {
+    color: var(--text);
+    line-height: 1.6;
+    width: 100%;
+}
+
+/* Office Info */
+.office-info {
+    padding: 80px 5vw;
+    background: white;
+}
+
+.office-grid {
+    margin-top: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.office-card {
+    background: var(--surface);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.office-card h3 {
+    margin-bottom: 25px;
+    color: var(--text);
+}
+
+.office-details {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.detail-item svg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.detail-item p {
+    color: var(--text);
+    line-height: 1.6;
+    width: 100%;
 }

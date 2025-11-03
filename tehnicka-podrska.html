@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tehnička Podrška | B2B Portal</title>
+    <meta name="description" content="Kontaktirajte našu tehničku podršku za pomoć, savete i tehnička pitanja">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="nav-placeholder"></div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="support-hero">
+            <div class="support-hero-content">
+                <h1>Tehnička Podrška</h1>
+                <p class="hero-subtitle">Tu smo da vam pomognemo. Pošaljite nam vaše pitanje ili nas pozovite direktno.</p>
+            </div>
+        </section>
+
+        <!-- Contact Methods -->
+        <section class="contact-methods">
+            <div class="container">
+                <h2 class="centered">Kako možemo da vam pomognemo?</h2>
+                
+                <div class="grid-3-col contact-grid">
+                    <!-- Phone Support -->
+                    <div class="contact-method-card">
+                        <div class="method-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <h3>Pozovite nas</h3>
+                        <p>Dostupni radnim danima 08:00 - 20:00h</p>
+                        <a href="tel:+381123456789" class="contact-link">+381 12 345 6789</a>
+                        <a href="tel:+381987654321" class="contact-link">+381 98 765 4321</a>
+                    </div>
+
+                    <!-- Email Support -->
+                    <div class="contact-method-card">
+                        <div class="method-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h3>Pošaljite email</h3>
+                        <p>Odgovaramo u roku od 24h</p>
+                        <a href="mailto:podrska@b2bportal.rs" class="contact-link">podrska@b2bportal.rs</a>
+                        <a href="mailto:info@b2bportal.rs" class="contact-link">info@b2bportal.rs</a>
+                    </div>
+
+                    <!-- Live Chat -->
+                    <div class="contact-method-card">
+                        <div class="method-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                        </div>
+                        <h3>Brzi kontakt</h3>
+                        <p>Popunite formular ispod</p>
+                        <a href="#contact-form" class="contact-link scroll-link">Kontakt forma</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Form -->
+        <section class="support-form-section" id="contact-form">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="form-header">
+                        <h2>Pošaljite nam poruku</h2>
+                        <p>Popunite formular i odgovorićemo vam u najkraćem roku</p>
+                    </div>
+
+                    <form id="support-form" class="support-form">
+                        <div class="form-group">
+                            <label for="name">Ime i prezime *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Kompanija</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email adresa *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Predmet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Izaberite predmet</option>
+                                <option value="technical">Tehnička podrška</option>
+                                <option value="sales">Prodaja i ponude</option>
+                                <option value="installation">Instalacija i montaža</option>
+                                <option value="warranty">Garancija i reklamacije</option>
+                                <option value="other">Ostalo</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Poruka *</label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Opišite vaše pitanje ili problem..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <span>Prihvatam <a href="#" class="link-text">uslove korišćenja</a> i <a href="#" class="link-text">politiku privatnosti</a> *</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="primary-button submit-btn">Pošalji poruku</button>
+                        
+                        <div id="form-result" class="form-result" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="centered">Često postavljana pitanja</h2>
+                
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Koliko traje isporuka?</h3>
+                        <p>Standardna isporuka širom Srbije traje 24-48h. Za hitne porudžbine nudimo ekspres dostavu u roku od nekoliko sati.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Da li nudite instalaciju?</h3>
+                        <p>Da, imamo tim sertifikovanih tehničara koji mogu instalirati i podesiti svu opremu. Kontaktirajte nas za detalje.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Koji je garantni rok?</h3>
+                        <p>Minimalni garantni rok je 2 godine za svu opremu. Neki proizvođači nude i produženu garanciju do 5 godina.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Da li pravite ponude za projekte?</h3>
+                        <p>Da, pravimo detaljne ponude za projekte bilo koje veličine. Pošaljite specifikacije i odgovorićemo u roku od 24h.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Koje načine plaćanja prihvatate?</h3>
+                        <p>Prihvatamo virman, keš pri preuzimanju, čekove i kreditne kartice. Za redovne kupce nudimo odloženo plaćanje.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>Da li nudite obuku za korišćenje?</h3>
+                        <p>Da, nakon instalacije nudimo besplatnu obuku za korišćenje i održavanje opreme. Dostupna je i online podrška.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location/Office Info -->
+        <section class="office-info">
+            <div class="container">
+                <h2 class="centered">Posetite nas</h2>
+                
+                <div class="grid-2-col office-grid">
+                    <div class="office-card">
+                        <h3>Glavna kancelarija - Beograd</h3>
+                        <div class="office-details">
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <p>Bulevar kralja Aleksandra 123, Beograd 11000</p>
+                            </div>
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p>Pon - Pet: 08:00 - 20:00<br>Subota: 09:00 - 15:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="office-card">
+                        <h3>Filijala - Novi Sad</h3>
+                        <div class="office-details">
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <p>Bulevar oslobođenja 45, Novi Sad 21000</p>
+                            </div>
+                            <div class="detail-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p>Pon - Pet: 08:00 - 18:00<br>Subota: 09:00 - 14:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

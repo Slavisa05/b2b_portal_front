@@ -38,7 +38,7 @@ function loadFooter() {
 		.catch(function (err) {
 			console.error('Failed to load footer:', err);
 		});
-}
+}	
 
 // try to load footer fragment (if placeholder exists)
 try { loadFooter(); } catch (e) { console.error(e); }

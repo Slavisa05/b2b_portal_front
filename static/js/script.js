@@ -1,59 +1,78 @@
-// Small helper: load external HTML fragments (navbar)
-function loadNavbar() {
-	const placeholder = document.getElementById('nav-placeholder');
-	if (!placeholder) return; // no placeholder on this page
+// ===== Main DOMContentLoaded - Initialize all functionality =====
+document.addEventListener('DOMContentLoaded', function() {
+	console.log('DOM loaded, initializing...');
+	
+	// Initialize navbar widgets (cart, mega menu, etc.)
+	initNavbarWidgets();
+	
+	// Initialize navbar scroll behavior
+	initNavbarScroll();
+	
+	// Initialize password toggle (if on login page)
+	initPasswordToggle();
+	
+	// Initialize tabs (if on homepage)
+	initTabs();
+});
 
-	fetch('navbar.html', { cache: 'no-store' })
-		.then(function (res) {
-			if (!res.ok) throw new Error('Network response was not ok');
-			return res.text();
-		})
-		.then(function (html) {
-			placeholder.innerHTML = html;
-			// initialize navbar widgets (cart toggle, etc.) after insertion
-			try { initNavbarWidgets(); } catch (e) { console.error('initNavbarWidgets error', e); }
-		})
-		.catch(function (err) {
-			console.error('Failed to load navbar:', err);
-		});
+// Initialize navbar scroll hide/show behavior
+function initNavbarScroll() {
+	const navbar = document.querySelector('.site-nav');
+	if (!navbar) {
+		console.log('Navbar not found');
+		return;
+	}
+	
+	console.log('Navbar found, initializing scroll...');
+	
+	let lastScrollTop = 0;
+	let isScrolling = false;
+	
+	window.addEventListener('scroll', function() {
+		if (!isScrolling) {
+			window.requestAnimationFrame(function() {
+				const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+				
+				if (scrollTop > lastScrollTop && scrollTop > 100) {
+					// Scrolling down & past 100px
+					navbar.classList.add('nav-hidden');
+					console.log('Hiding navbar');
+				} else {
+					// Scrolling up
+					navbar.classList.remove('nav-hidden');
+					console.log('Showing navbar');
+				}
+				
+				lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+				isScrolling = false;
+			});
+			
+			isScrolling = true;
+		}
+	});
+	
+	console.log('Navbar scroll initialized');
 }
 
-// try to load navbar fragment (if placeholder exists)
-try { loadNavbar(); } catch (e) { console.error(e); }
-
-// Small helper: load footer fragment (same pattern as navbar)
-function loadFooter() {
-	const placeholder = document.getElementById('footer-placeholder');
-	if (!placeholder) return;
-
-	fetch('footer.html', { cache: 'no-store' })
-		.then(function (res) {
-			if (!res.ok) throw new Error('Network response was not ok');
-			return res.text();
-		})
-		.then(function (html) {
-			placeholder.innerHTML = html;
-			// no special init required, but could wire footer widgets here
-		})
-		.catch(function (err) {
-			console.error('Failed to load footer:', err);
-		});
-}	
-
-// try to load footer fragment (if placeholder exists)
-try { loadFooter(); } catch (e) { console.error(e); }
-
-// Initialize cart/menu behaviors for the injected navbar
+// Initialize cart/menu behaviors for the navbar
 function initNavbarWidgets() {
+	console.log('Initializing navbar widgets...');
+	
 	const cartButton = document.getElementById('cart-button');
 	const cartMenu = document.getElementById('cart-menu');
 	const cartClose = document.getElementById('cart-close');
 
-	if (!cartButton || !cartMenu) return;
+	if (!cartButton || !cartMenu) {
+		console.log('Cart button or menu not found');
+		return;
+	}
+	
+	console.log('Cart elements found, setting up event listeners...');
 
 	function openCart() {
 		cartMenu.setAttribute('aria-hidden', 'false');
 		cartButton.setAttribute('aria-expanded', 'true');
+		console.log('Opening cart');
 		// focus first actionable item for keyboard users
 		const first = cartMenu.querySelector('.cart-actions a');
 		if (first) first.focus();
@@ -62,10 +81,12 @@ function initNavbarWidgets() {
 	function closeCart() {
 		cartMenu.setAttribute('aria-hidden', 'true');
 		cartButton.setAttribute('aria-expanded', 'false');
+		console.log('Closing cart');
 		cartButton.focus();
 	}
 
 	cartButton.addEventListener('click', function (e) {
+		console.log('Cart button clicked');
 		const expanded = cartButton.getAttribute('aria-expanded') === 'true';
 		if (expanded) closeCart(); else openCart();
 	});
@@ -140,7 +161,7 @@ function initNavbarWidgets() {
 }
 
 // Password visibility toggle
-document.addEventListener('DOMContentLoaded', function () {
+function initPasswordToggle() {
 	const pwInput = document.getElementById('password');
 	const toggleBtn = document.getElementById('pw-toggle');
 
@@ -238,11 +259,10 @@ document.addEventListener('DOMContentLoaded', function () {
 			if (e.key === 'Escape') closeModal();
 		});
 	}
-
-});
+}
 
 // TABS - dynamic tab population
-document.addEventListener('DOMContentLoaded', function () {
+function initTabs() {
 	const tabBtns = document.querySelectorAll('.buttons-wrapper button');
 	const tabContent = document.querySelector('.tab-content');
 	const allDiv = document.getElementById('all-div');
@@ -324,4 +344,105 @@ document.addEventListener('DOMContentLoaded', function () {
 			}
 		});
 	});
-});
+
+    // PASSWORD VISIBILTY TOGGLE
+    const pwInput = document.getElementById('password');
+	const toggleBtn = document.getElementById('pw-toggle');
+
+	if (!pwInput || !toggleBtn) return; // nothing to do
+
+	const showIcon = function () {
+		// simple open-eye SVG
+		return `
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+				<circle cx="12" cy="12" r="3"></circle>
+			</svg>`;
+	};
+
+	const hideIcon = function () {
+		// eye-off SVG
+		return `
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.79 21.79 0 0 1 5-7.11"></path>
+				<path d="M1 1l22 22"></path>
+				<path d="M9.88 9.88a3 3 0 0 0 4.24 4.24"></path>
+			</svg>`;
+	};
+
+	function updateIcon(isShown) {
+		toggleBtn.innerHTML = isShown ? hideIcon() : showIcon();
+		toggleBtn.setAttribute('aria-pressed', isShown ? 'true' : 'false');
+		toggleBtn.setAttribute('aria-label', isShown ? 'Sakrij šifru' : 'Prikaži šifru');
+	}
+
+	// initialize
+	updateIcon(false);
+
+	toggleBtn.addEventListener('click', function () {
+		const isPassword = pwInput.type === 'password';
+		pwInput.type = isPassword ? 'text' : 'password';
+		updateIcon(isPassword);
+		// keep focus on the input for easier typing
+		pwInput.focus();
+	});
+
+	// keyboard support: Enter or Space toggles when button focused
+	toggleBtn.addEventListener('keydown', function (e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			toggleBtn.click();
+		}
+	});
+
+
+	// --- Forgot password (frontend only) ---
+	const forgotLink = document.getElementById('forgot-link');
+	const forgotModal = document.getElementById('forgot-modal');
+	const modalOverlay = document.getElementById('modal-overlay');
+	const modalClose = document.getElementById('modal-close');
+	const forgotForm = document.getElementById('forgot-form');
+	const forgotResult = document.getElementById('forgot-result');
+
+	function openModal() {
+		if (!forgotModal) return;
+		forgotModal.setAttribute('aria-hidden', 'false');
+		const input = document.getElementById('forgot-email');
+		if (input) input.focus();
+	}
+
+	function closeModal() {
+		if (!forgotModal) return;
+		forgotModal.setAttribute('aria-hidden', 'true');
+		if (forgotResult) forgotResult.textContent = '';
+	}
+
+	if (forgotLink && forgotModal) {
+		forgotLink.addEventListener('click', function (e) {
+			e.preventDefault();
+			openModal();
+		});
+
+		modalOverlay.addEventListener('click', closeModal);
+		modalClose.addEventListener('click', closeModal);
+
+		// handle modal form submit (frontend only)
+		forgotForm.addEventListener('submit', function (e) {
+			e.preventDefault();
+			const email = document.getElementById('forgot-email').value;
+			// simulate sending
+			if (forgotResult) forgotResult.textContent = `Poslato (simulirano) na: ${email}`;
+			// keep modal open briefly then close
+			setTimeout(() => {
+				closeModal();
+			}, 1500);
+		});
+
+		// close on Escape
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape') closeModal();
+		});
+	}
+}
+
+

@@ -8,7 +8,7 @@ let products = [
         category: 'video-nadzor',
         price: 15990,
         status: 'active',
-        image: 'slike/ip_kamera1.webp',
+        image: '/static/slike/ip_kamera1.webp',
         description: '4MP AcuSense mrežna bullet kamera'
     },
     {
@@ -17,7 +17,7 @@ let products = [
         category: 'interfoni',
         price: 12500,
         status: 'active',
-        image: 'slike/video_interfon1.jpg',
+        image: '/static/slike/video_interfon1.jpg',
         description: 'WiFi video interfon sa pozivom'
     },
     {
@@ -26,7 +26,7 @@ let products = [
         category: 'led-paneli',
         price: 2890,
         status: 'active',
-        image: 'slike/led_panel1.jpg',
+        image: '/static/slike/led_panel1.jpg',
         description: 'Kvadratni LED panel 4000K'
     },
     {
@@ -35,7 +35,7 @@ let products = [
         category: 'led-rasveta',
         price: 450,
         status: 'active',
-        image: 'slike/led_sijalica1.jpg',
+        image: '/static/slike/led_sijalica1.jpg',
         description: 'LED sijalica toplo bela'
     }
 ];

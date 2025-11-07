@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <meta name="description" content="Ovo je homepage sajta">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    
-    <div id="nav-placeholder"></div>
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock title %}
+
+{% block description %}
+    Ovo je homepage
+{% endblock description %}
+
+{% block content %}
+    {% include "navbar.html" %}
 
     <main>
         <section class="homepage-hero-section">
@@ -17,10 +17,10 @@
             <div class="hero-slider" id="heroSlider">
                 <div class="slider-container">
                     <!-- Slides -->
-                    <div class="slide active" style="background-image: url('slike/s1.webp');"></div>
-                    <div class="slide" style="background-image: url('slike/s2.webp');"></div>
-                    <div class="slide" style="background-image: url('slike/s3.webp');"></div>
-                    <div class="slide" style="background-image: url('slike/s4.webp');"></div>
+                    <div class="slide active" style="background-image: url('{{ url_for('static', filename='slike/s1.webp') }}');"></div>
+                    <div class="slide" style="background-image: url('{{ url_for('static', filename='slike/s2.webp') }}');"></div>
+                    <div class="slide" style="background-image: url('{{ url_for('static', filename='slike/s3.webp') }}');"></div>
+                    <div class="slide" style="background-image: url('{{ url_for('static', filename='slike/s4.webp') }}');"></div>
                 </div>
 
                 <!-- Slide Indicators -->
@@ -40,7 +40,7 @@
         <h2>Popularne Kategorije</h2>
         <div class="categories-grid">
             <div class="category-card">
-                <div class="category-image" style="background-image: url('slike/p1.jpg');">
+                <div class="category-image" style="background-image: url('{{ url_for('static', filename='slike/p1.jpg') }}');">
                     <div class="category-overlay">
                         <h3>Video Nadzor</h3>
                         <div class="quick-links">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="category-card">
-                <div class="category-image" style="background-image: url('slike/p2.jpg');">
+                <div class="category-image" style="background-image: url('{{ url_for('static', filename='slike/p2.jpg') }}');">
                     <div class="category-overlay">
                         <h3>Smart Home</h3>
                         <div class="quick-links">
@@ -68,7 +68,7 @@
             </div>
 
             <div class="category-card">
-                <div class="category-image" style="background-image: url('slike/p3.jpg');">
+                <div class="category-image" style="background-image: url('{{ url_for('static', filename='slike/p3.jpg') }}');">
                     <div class="category-overlay">
                         <h3>LED Rasveta</h3>
                         <div class="quick-links">
@@ -82,7 +82,7 @@
             </div>
 
             <div class="category-card">
-                <div class="category-image" style="background-image: url('slike/p4.jpg');">
+                <div class="category-image" style="background-image: url('{{ url_for('static', filename='slike/p4.jpg') }}');">
                     <div class="category-overlay">
                         <h3>Interfoni</h3>
                         <div class="quick-links">
@@ -158,7 +158,7 @@
         <div class="tab-content">
             <div class="grid-3-col" id="all-div">
                 <div class="product-card" data-category="video">
-                    <img src="slike/p1.jpg" alt="IP Kamera Pro X1" />
+                    <img src="{{ url_for('static', filename='slike/p1.jpg') }}" alt="IP Kamera Pro X1" />
                     <h4>IP Kamera Pro X1</h4>
                     <p class="centered">4K rezolucija, AI detekcija</p>
                     <div class="price">24.999 RSD</div>
@@ -170,7 +170,7 @@
                 </div>
 
                 <div class="product-card" data-category="smart">
-                    <img src="slike/p2.jpg" alt="IP Kamera Pro X1" />
+                    <img src="{{ url_for('static', filename='slike/p2.jpg') }}" alt="IP Kamera Pro X1" />
                     <h4>IP Kamera Pro X1</h4>
                     <p class="centered">4K rezolucija, AI detekcija</p>
                     <div class="price">24.999 RSD</div>
@@ -181,8 +181,8 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="led">
-                    <img src="slike/p3.jpg" alt="IP Kamera Pro X1" />
+                <div class="product-card" data-category="interfon">
+                    <img src="{{ url_for('static', filename='slike/p3.jpg') }}" alt="IP Kamera Pro X1" />
                     <h4>IP Kamera Pro X1</h4>
                     <p class="centered">4K rezolucija, AI detekcija</p>
                     <div class="price">24.999 RSD</div>
@@ -193,8 +193,8 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="led">
-                    <img src="slike/p3.jpg" alt="IP Kamera Pro X1" />
+                <div class="product-card" data-category="video">
+                    <img src="{{ url_for('static', filename='slike/p3.jpg') }}" alt="IP Kamera Pro X1" />
                     <h4>IP Kamera Pro X1</h4>
                     <p class="centered">4K rezolucija, AI detekcija</p>
                     <div class="price">24.999 RSD</div>
@@ -222,9 +222,10 @@
         </div>
     </section>
 
-    <div id="footer-placeholder"></div>
+    {% include "footer.html" %}
+{% endblock content %}
 
-    <script src="js/script.js"></script>
-    <script src="js/slider.js"></script>
-</body>
-</html>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock script %}

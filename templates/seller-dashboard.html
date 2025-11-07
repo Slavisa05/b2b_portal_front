@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="sr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Dashboard | B2B Portal</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/seller-dashboard.css">
-</head>
-<body class="seller-body">
+{% extends "layout.html" %}
+
+{% block title %}
+    Seller Dashboard 
+{% endblock title %}
+
+{% block description %}
+    Ovo je seller dashboard
+{% endblock description %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seller-dashboard.css') }}">
+{% endblock style %}
+
+{% block content %}
     <!-- Seller Sidebar -->
     <aside class="seller-sidebar" id="seller-sidebar">
         <div class="sidebar-header">
-            <img src="slike/logo_nobg.png" alt="Logo" class="sidebar-logo">
+            <img src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo" class="sidebar-logo">
             <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -88,7 +93,7 @@
                     <span class="cart-badge" id="cart-count">0</span>
                 </button>
                 <div class="user-menu">
-                    <img src="slike/logo_nobg.png" alt="User" class="user-avatar">
+                    <img src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="User" class="user-avatar">
                     <div class="user-info">
                         <span class="user-name" id="header-user-name">Prodavac</span>
                         <span class="user-discount-header" id="header-user-discount">Popust: 0%</span>
@@ -239,7 +244,7 @@
                     <h3>Profilna Slika</h3>
                     <div class="profile-image-section">
                         <div class="profile-image-preview">
-                            <img src="slike/logo_nobg.png" alt="Profile" id="profile-image-display">
+                            <img src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Profile" id="profile-image-display">
                         </div>
                         <div class="profile-image-controls">
                             <input type="file" id="profile-image-input" accept="image/*" style="display: none;">
@@ -332,7 +337,8 @@
     </div>
 
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+{% endblock content %}
 
-    <script src="js/seller-dashboard.js"></script>
-</body>
-</html>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/seller-dashboard.js') }}"></script>
+{% endblock script %}

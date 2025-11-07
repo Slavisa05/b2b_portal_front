@@ -182,7 +182,8 @@ button, input, textarea, select {
 }
 
 /* NAVBAR */
-nav {
+nav,
+.site-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -191,6 +192,12 @@ nav {
     top: 0; left: 0; right: 0;
     backdrop-filter: blur(100px);
     transition: all 300ms ease;
+    z-index: 1000;
+}
+
+nav.nav-hidden,
+.site-nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-logo {

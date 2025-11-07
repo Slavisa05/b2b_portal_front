@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfoni | B2B Portal</title>
-    <meta name="description" content="Kompletan asortiman interfona za stambene i poslovne objekte">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/category.css">
-</head>
-<body>
-    <div id="nav-placeholder"></div>
+{% extends "layout.html" %}
+
+{% block title %}
+    Interfoni
+{% endblock title %}
+
+{% block description %}
+    Ovo je stranica za interfone
+{% endblock description %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/category.css') }}">
+{% endblock style %}
+
+{% block content %}
+    {% include "navbar.html" %}
 
     <main class="category-page">
         <div class="sidebar">
@@ -121,7 +125,7 @@
                 <div class="category-grid">
                     <div class="product-card category-card" data-brand="hikvision" data-type="video" data-resolution="ugradni" data-price="24500"> 
                         <div class="product-image">
-                            <img src="slike/p3.jpg" alt="Hikvision Video Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p3.jpg') }}" alt="Hikvision Video Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Hikvision DS-KH6320-WTE1</h4>
@@ -136,7 +140,7 @@
 
                     <div class="product-card category-card" data-brand="commax" data-type="video" data-resolution="ugradni" data-price="16500"> 
                         <div class="product-image">
-                            <img src="slike/p2.jpg" alt="Commax Video Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p2.jpg') }}" alt="Commax Video Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Commax CDV-70K</h4>
@@ -151,7 +155,7 @@
 
                     <div class="product-card category-card" data-brand="dahua" data-type="ip" data-resolution="ugradni" data-price="28000"> 
                         <div class="product-image">
-                            <img src="slike/p1.jpg" alt="Dahua IP Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p1.jpg') }}" alt="Dahua IP Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Dahua VTH5341G-W</h4>
@@ -166,7 +170,7 @@
 
                     <div class="product-card category-card" data-brand="fermax" data-type="video" data-resolution="nadgradni" data-price="22000"> 
                         <div class="product-image">
-                            <img src="slike/p4.jpg" alt="Fermax Video Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p4.jpg') }}" alt="Fermax Video Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Fermax SMILE 7</h4>
@@ -181,7 +185,7 @@
 
                     <div class="product-card category-card" data-brand="commax" data-type="audio" data-resolution="ugradni" data-price="7800"> 
                         <div class="product-image">
-                            <img src="slike/p3.jpg" alt="Commax Audio Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p3.jpg') }}" alt="Commax Audio Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Commax DP-2HPR</h4>
@@ -196,7 +200,7 @@
 
                     <div class="product-card category-card" data-brand="bticino" data-type="video" data-resolution="ugradni" data-price="35000"> 
                         <div class="product-image">
-                            <img src="slike/p2.jpg" alt="BTicino Video Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p2.jpg') }}" alt="BTicino Video Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>BTicino Classe 300X13E</h4>
@@ -211,7 +215,7 @@
 
                     <div class="product-card category-card" data-brand="urmet" data-type="video" data-resolution="ugradni" data-price="26500"> 
                         <div class="product-image">
-                            <img src="slike/p1.jpg" alt="Urmet Video Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p1.jpg') }}" alt="Urmet Video Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Urmet 1750/16</h4>
@@ -226,7 +230,7 @@
 
                     <div class="product-card category-card" data-brand="hikvision" data-type="ip" data-resolution="ugradni" data-price="32000"> 
                         <div class="product-image">
-                            <img src="slike/p4.jpg" alt="Hikvision IP Interfon" />
+                            <img src="{{ url_for('static', filename='slike/p4.jpg') }}" alt="Hikvision IP Interfon" />
                         </div>
                         <div class="product-info">
                             <h4>Hikvision DS-KH9510-WTE1</h4>
@@ -243,9 +247,10 @@
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+    {% include "footer.html" %}
+{% endblock content %}
 
-    <script src="js/script.js"></script>
-    <script src="js/category.js"></script>
-</body>
-</html>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/category.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock script %}

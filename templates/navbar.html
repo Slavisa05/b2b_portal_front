@@ -1,7 +1,7 @@
 <nav class="site-nav" role="navigation" aria-label="Glavna navigacija">
     <div class="nav-left">
         <a href="homepage.html" class="nav-home" aria-label="Početna">
-            <img class="nav-logo" src="slike/logo_nobg.png" alt="Logo firme">
+            <img class="nav-logo" src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo firme">
         </a>
     </div>
 
@@ -16,7 +16,7 @@
     </div>
 
     <div class="nav-right">
-        <a href="/account" class="nav-account" title="Moj nalog">
+        <a href="/" class="nav-account" title="Moj nalog">
             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
@@ -50,8 +50,8 @@
 </nav>
 
 <div class="category-line-hero">
-    <a class="category-link" href="video-nadzor.html">Video nadzor</a>
-    <a class="category-link" href="interfoni.html">Interfoni</a>
-    <a class="category-link" href="led-paneli.html">Led paneli</a>
-    <a class="category-link" href="led-rasveta.html">Led rasveta</a>
+    <a class="category-link" href="{{ url_for('videoNadzor') }}">Video nadzor</a>
+    <a class="category-link" href="{{ url_for('interfoni') }}">Interfoni</a>
+    <a class="category-link" href="{{ url_for('ledPaneli') }}">Led paneli</a>
+    <a class="category-link" href="{{ url_for('ledRasveta') }}">Led rasveta</a>
 </div>

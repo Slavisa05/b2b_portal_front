@@ -10,7 +10,7 @@ let currentSeller = {
     company: 'Marko Company',
     address: 'Bulevar Oslobođenja 123, Novi Sad',
     discount: 24, // percentage
-    profileImage: 'slike/logo_nobg.png' // default image
+    profileImage: '/static/slike/logo_nobg.png' // default image
 };
 
 // Sample products
@@ -21,7 +21,7 @@ let products = [
         category: 'video-nadzor',
         price: 15000,
         stock: 25,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     },
     {
@@ -30,7 +30,7 @@ let products = [
         category: 'video-nadzor',
         price: 8500,
         stock: 40,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     },
     {
@@ -39,7 +39,7 @@ let products = [
         category: 'interfoni',
         price: 22000,
         stock: 0,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     },
     {
@@ -48,7 +48,7 @@ let products = [
         category: 'interfoni',
         price: 28000,
         stock: 12,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     },
     {
@@ -57,7 +57,7 @@ let products = [
         category: 'led-paneli',
         price: 3500,
         stock: 100,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     },
     {
@@ -66,7 +66,7 @@ let products = [
         category: 'led-rasveta',
         price: 450,
         stock: 200,
-        image: 'slike/logo_nobg.png',
+        image: '/static/slike/logo_nobg.png',
         active: true
     }
 ];
@@ -688,7 +688,7 @@ function handleProfileImageUpload(event) {
 }
 
 function removeProfileImage() {
-    currentSeller.profileImage = 'slike/logo_nobg.png'; // Reset to default
+    currentSeller.profileImage = '/static/slike/logo_nobg.png'; // Reset to default
     updateProfileImages();
     
     // Clear the file input

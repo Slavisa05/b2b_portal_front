@@ -8,7 +8,7 @@ let products = [
         category: 'video-nadzor',
         price: 15990,
         status: 'active',
-        image: '/static/slike/ip_kamera1.webp',
+        image: '/static/slike/p1.jpg',
         description: '4MP AcuSense mrežna bullet kamera'
     },
     {
@@ -17,7 +17,7 @@ let products = [
         category: 'interfoni',
         price: 12500,
         status: 'active',
-        image: '/static/slike/video_interfon1.jpg',
+        image: '/static/slike/p1.jpg',
         description: 'WiFi video interfon sa pozivom'
     },
     {
@@ -26,7 +26,7 @@ let products = [
         category: 'led-paneli',
         price: 2890,
         status: 'active',
-        image: '/static/slike/led_panel1.jpg',
+        image: '/static/slike/p1.jpg',
         description: 'Kvadratni LED panel 4000K'
     },
     {
@@ -35,7 +35,7 @@ let products = [
         category: 'led-rasveta',
         price: 450,
         status: 'active',
-        image: '/static/slike/led_sijalica1.jpg',
+        image: '/static/slike/p1.jpg',
         description: 'LED sijalica toplo bela'
     }
 ];
@@ -176,51 +176,108 @@ function showSection(sectionName) {
 function initMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.getElementById('admin-sidebar');
+    const sidebarToggle = document.querySelector('.sidebar-toggle');
     
+    // Create overlay if it doesn't exist
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        document.body.appendChild(overlay);
+    }
+    
+    // Open sidebar
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
+            sidebar.classList.add('active');
+            overlay.classList.add('active');
         });
     }
+    
+    // Close button inside sidebar
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    }
+    
+    // Close when clicking overlay
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+    });
+    
+    // Close sidebar when clicking on nav items (mobile)
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (window.innerWidth <= 767) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    });
 }
 
 // Products Management
 function loadProducts() {
-    const tbody = document.getElementById('products-table-body');
+    const container = document.getElementById('products-table-body');
     
-    if (!tbody) return;
+    console.log('loadProducts called');
+    console.log('Container found:', container);
+    console.log('Products array:', products);
     
-    tbody.innerHTML = '';
+    if (!container) {
+        console.error('products-table-body element not found!');
+        return;
+    }
+    
+    container.innerHTML = '';
     
     products.forEach(product => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>#${product.id}</td>
-            <td><img src="${product.image}" alt="${product.name}" class="product-image"></td>
-            <td>${product.name}</td>
-            <td>${getCategoryName(product.category)}</td>
-            <td>${formatPrice(product.price)}</td>
-            <td><span class="status-badge ${product.status}">${product.status === 'active' ? 'Aktivan' : 'Neaktivan'}</span></td>
-            <td>
-                <div class="table-actions">
-                    <button class="action-btn edit" onclick="editProduct(${product.id})" title="Izmeni">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                    </button>
-                    <button class="action-btn delete" onclick="deleteProduct(${product.id})" title="Obriši">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                    </button>
+        console.log('Creating card for product:', product.name);
+        // Product card (used on all devices)
+        const card = document.createElement('div');
+        card.className = 'mobile-product-card';
+        card.innerHTML = `
+            <div class="product-header">
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-main-info">
+                    <h4>${product.name}</h4>
+                    <div class="product-id">#${product.id}</div>
+                    <span class="status-badge ${product.status}">${product.status === 'active' ? 'Aktivan' : 'Neaktivan'}</span>
                 </div>
-            </td>
+            </div>
+            <div class="product-details">
+                <div class="detail-item">
+                    <span class="detail-label">Kategorija</span>
+                    <span class="detail-value">${getCategoryName(product.category)}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Cena</span>
+                    <span class="detail-value">${formatPrice(product.price)}</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="action-btn edit" onclick="editProduct(${product.id})" title="Izmeni">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                </button>
+                <button class="action-btn delete" onclick="deleteProduct(${product.id})" title="Obriši">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </button>
+            </div>
         `;
-        tbody.appendChild(row);
+        container.appendChild(card);
     });
     
+    console.log('All cards created. Total:', products.length);
     updateStats();
 }
 
@@ -327,11 +384,17 @@ function initProductForm() {
 
 // Sellers Management
 function loadSellers() {
-    const tbody = document.getElementById('sellers-table-body');
+    const container = document.getElementById('sellers-table-body');
     
-    if (!tbody) return;
+    console.log('loadSellers called');
+    console.log('Container found:', container);
     
-    tbody.innerHTML = '';
+    if (!container) {
+        console.error('sellers-table-body element not found!');
+        return;
+    }
+    
+    container.innerHTML = '';
     
     sellers.forEach(seller => {
         // Calculate seller's orders and total spent
@@ -348,37 +411,63 @@ function loadSellers() {
             }
         });
         
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>#${seller.id}</td>
-            <td>${seller.firstname} ${seller.lastname}</td>
-            <td>${seller.email}</td>
-            <td>${seller.phone}</td>
-            <td>${seller.company}</td>
-            <td><span class="discount-badge">${seller.discount || 0}%</span></td>
-            <td><strong style="color: var(--secondary);">${orderCount}</strong></td>
-            <td><strong style="color: var(--primary);">${formatPrice(totalSpent)}</strong></td>
-            <td><span class="status-badge ${seller.status}">${seller.status === 'active' ? 'Aktivan' : 'Neaktivan'}</span></td>
-            <td>
-                <div class="table-actions">
-                    <button class="action-btn edit" onclick="editSeller(${seller.id})" title="Izmeni">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                    </button>
-                    <button class="action-btn delete" onclick="deleteSeller(${seller.id})" title="Obriši">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="3 6 5 6 21 6"></polyline>
-                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                        </svg>
-                    </button>
+        console.log('Creating card for seller:', seller.firstname, seller.lastname);
+        
+        // Seller card (used on all devices)
+        const card = document.createElement('div');
+        card.className = 'mobile-seller-card';
+        card.innerHTML = `
+            <div class="seller-header">
+                <div class="seller-main-info">
+                    <h4>${seller.firstname} ${seller.lastname}</h4>
+                    <div class="seller-company">${seller.company}</div>
+                    <div class="seller-id">#${seller.id}</div>
                 </div>
-            </td>
+                <span class="status-badge ${seller.status}">${seller.status === 'active' ? 'Aktivan' : 'Neaktivan'}</span>
+            </div>
+            <div class="seller-details">
+                <div class="detail-item">
+                    <span class="detail-label">Email</span>
+                    <span class="detail-value">${seller.email}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Telefon</span>
+                    <span class="detail-value">${seller.phone}</span>
+                </div>
+            </div>
+            <div class="seller-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Popust</span>
+                    <span class="stat-value" style="color: var(--secondary);">${seller.discount || 0}%</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Porudžbine</span>
+                    <span class="stat-value highlight">${orderCount}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Potrošeno</span>
+                    <span class="stat-value highlight">${formatPrice(totalSpent)}</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="action-btn edit" onclick="editSeller(${seller.id})" title="Izmeni">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                    </svg>
+                </button>
+                <button class="action-btn delete" onclick="deleteSeller(${seller.id})" title="Obriši">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"></polyline>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                    </svg>
+                </button>
+            </div>
         `;
-        tbody.appendChild(row);
+        container.appendChild(card);
     });
     
+    console.log('All seller cards created. Total:', sellers.length);
     updateStats();
 }
 
@@ -708,11 +797,17 @@ function getSellerStats(sellerId) {
 
 // Orders Management
 function loadOrders() {
-    const tbody = document.getElementById('orders-table-body');
+    const container = document.getElementById('orders-table-body');
     
-    if (!tbody) return;
+    console.log('loadOrders called');
+    console.log('Container found:', container);
     
-    tbody.innerHTML = '';
+    if (!container) {
+        console.error('orders-table-body element not found!');
+        return;
+    }
+    
+    container.innerHTML = '';
     
     orders.forEach(order => {
         const seller = sellers.find(s => s.id === order.sellerId);
@@ -725,40 +820,51 @@ function loadOrders() {
         const finalPrice = calculateDiscountedPrice(originalPrice, discount);
         const discountAmount = originalPrice - finalPrice;
         
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><strong>#${order.id}</strong></td>
-            <td>${seller.firstname} ${seller.lastname}<br><small>${seller.company}</small></td>
-            <td>${product.name}<br><small>${getCategoryName(product.category)}</small></td>
-            <td>${order.quantity} kom</td>
-            <td>
-                <div class="price-cell">
-                    <span class="original-price">${formatPrice(originalPrice)}</span>
+        console.log('Creating card for order:', order.id);
+        
+        // Order card (used on all devices)
+        const card = document.createElement('div');
+        card.className = 'mobile-order-card';
+        card.innerHTML = `
+            <div class="order-header">
+                <div class="order-main-info">
+                    <h4>${seller.firstname} ${seller.lastname}</h4>
+                    <div class="order-id">Porudžbina #${order.id}</div>
+                    <div class="order-date">${formatDate(order.date)}</div>
                 </div>
-            </td>
-            <td><span class="discount-badge">${discount}%</span></td>
-            <td>
-                <div class="price-cell">
-                    <span class="final-price">${formatPrice(finalPrice)}</span>
-                    <small class="discount-amount">-${formatPrice(discountAmount)}</small>
+                <span class="order-status-badge ${order.status}">${getStatusName(order.status)}</span>
+            </div>
+            <div class="order-product-info">
+                <div class="product-name">${product.name}</div>
+                <div class="product-quantity">Količina: ${order.quantity} kom × ${formatPrice(product.price)}</div>
+            </div>
+            <div class="order-pricing">
+                <div class="price-item">
+                    <span class="price-label">Originalna cena</span>
+                    <span class="price-value original">${formatPrice(originalPrice)}</span>
                 </div>
-            </td>
-            <td>${formatDate(order.date)}</td>
-            <td><span class="order-status-badge ${order.status}">${getStatusName(order.status)}</span></td>
-            <td>
-                <div class="table-actions">
-                    <button class="action-btn edit" onclick="viewOrderDetails(${order.id})" title="Detalji">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </button>
+                <div class="price-item">
+                    <span class="price-label">Popust (${discount}%)</span>
+                    <span class="price-value discount">-${formatPrice(discountAmount)}</span>
                 </div>
-            </td>
+                <div class="price-item">
+                    <span class="price-label">Konačna cena</span>
+                    <span class="price-value final">${formatPrice(finalPrice)}</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="action-btn edit" onclick="viewOrderDetails(${order.id})" title="Detalji">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
         `;
-        tbody.appendChild(row);
+        container.appendChild(card);
     });
     
+    console.log('All order cards created. Total:', orders.length);
     updateOrderStats();
 }
 

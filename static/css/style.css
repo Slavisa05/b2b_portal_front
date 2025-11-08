@@ -324,7 +324,7 @@ nav.nav-hidden,
 }
 
 .login-card {
-    width: 30vw;
+    width: 50vw;
     border-radius: 10px;
     background-color: var(--surface);
     display: flex;
@@ -450,6 +450,7 @@ input {
     color: var(--secondary);
     text-decoration: none;
     font-size: 0.95rem;
+    text-align: center;
 }
 
 .forgot-link:hover {
@@ -1283,11 +1284,23 @@ footer {
 /* ============= RESPONZIVNOST ===============*/
 /* ========================================== */
 
-@media (max-width: 480px) { }
+@media (max-width: 480px) {
+    .login-card {
+        width: 90%;
+    }
+ }
 
-@media (min-width: 481px) and (max-width: 767px) { }
+@media (min-width: 481px) and (max-width: 767px) {
+    .login-card {
+        width: 80%;
+    }
+ }
 
-@media (min-width: 768px) and (max-width: 1023px) { }
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login-card {
+        width: 70%;
+    }
+ }
 
 @media (min-width: 1440px) and (max-width: 1919px) { }
 

@@ -19,7 +19,7 @@ html {
 
 body {
     background-color: var(--bg);
-    color: var(--text);
+    color: var(--text); 
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     line-height: 1.4rem;
@@ -965,6 +965,60 @@ footer {
     line-height: 1.2;
 }
 
+/* Phones (<= 599px) */
+@media (max-width: 599px) {
+    .login-section {
+        gap: 60px;
+    }
+    .logo-container {
+        height: 14vh;
+    }
+    .login-card {
+        width: 92vw;
+        max-width: 480px;
+    }
+    .login-card form {
+        width: 100%;
+    }
+    .form-row.remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+/* Tablets portrait (600px–899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+    .login-card {
+        width: 85vw;
+        max-width: 560px;
+    }
+}
+
+/* Tablets landscape / small desktops (900px–1199px) */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .login-card {
+        width: 60vw;
+        max-width: 640px;
+    }
+}
+
+/* Desktops (1200px–1535px) */
+@media (min-width: 1200px) and (max-width: 1535px) {
+    .login-card {
+        width: 40vw;
+        max-width: 700px;
+    }
+}
+
+/* Large screens (>= 1536px) */
+@media (min-width: 1536px) {
+    .login-card {
+        width: 32vw;
+        max-width: 760px;
+    }
+}
+
 /* =====================
    Technical Support / Contact Page
    ===================== */
@@ -1269,17 +1323,3 @@ footer {
     line-height: 1.6;
     width: 100%;
 }
-
-/* ========================================== */
-/* ============= RESPONZIVNOST ===============*/
-/* ========================================== */
-
-@media (max-width: 480px) { }
-
-@media (min-width: 481px) and (max-width: 767px) { }
-
-@media (min-width: 768px) and (max-width: 1023px) { }
-
-@media (min-width: 1440px) and (max-width: 1919px) { }
-
-@media (min-width: 1920px) { }

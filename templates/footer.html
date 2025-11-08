@@ -3,27 +3,27 @@
         <div class="grid-5-col">
             <div class="centered-cell">
                 <a href="homepage.html" class="nav-home" aria-label="Početna">
-                    <img class="nav-logo" src="slike/logo_nobg.png" alt="Logo firme">
+                    <img class="nav-logo" src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo firme">
                 </a>
             </div>
 
             <div class="centered-cell">
                 <h4>Kategorije</h4>
                 <ul class="footer-links">
-                    <li><a class="nav-link" href="#">Video nadzor</a></li>
-                    <li><a class="nav-link" href="#">Smart Home</a></li>
-                    <li><a class="nav-link" href="#">LED Rasveta</a></li>
-                    <li><a class="nav-link" href="#">Interfoni</a></li>
+                    <li><a class="nav-link" href="{{ url_for('videoNadzor') }}">Video nadzor</a></li>
+                    <li><a class="nav-link" href="{{ url_for('interfoni') }}">Interfoni</a></li>
+                    <li><a class="nav-link" href="{{ url_for('ledPaneli') }}">Led paneli</a></li>
+                    <li><a class="nav-link" href="{{ url_for('ledRasveta') }}">Led rasveta</a></li>
                 </ul>
             </div>
     
             <div class="centered-cell">
                 <h4>Korisni linkovi</h4>
                 <ul class="footer-links">
-                    <li><a class="nav-link" href="homepage.html">Homepage</a></li>
-                    <li><a class="nav-link" href="tehnicka-podrska.html">Tehnička podrška</a></li>
-                    <li><a class="nav-link" href="homepage.html">Uslovi korišćenja</a></li>
-                    <li><a class="nav-link" href="homepage.html">Politika privatnosti</a></li>
+                    <li><a class="nav-link" href="/">Homepage</a></li>
+                    <li><a class="nav-link" href="{{ url_for('tehnickaPodrska') }}">Tehnička podrška</a></li>
+                    <li><a class="nav-link" href="/">Uslovi korišćenja</a></li>
+                    <li><a class="nav-link" href="/">Politika privatnosti</a></li>
                 </ul>
             </div>
     

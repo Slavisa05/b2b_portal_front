@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<html lang="sr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tehnička Podrška | B2B Portal</title>
-    <meta name="description" content="Kontaktirajte našu tehničku podršku za pomoć, savete i tehnička pitanja">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    
-    <div id="nav-placeholder"></div>
+{% extends "layout.html" %}
 
+{% block title %}
+    Tehnicka podrska
+{% endblock title %}
+
+{% block description %}
+    Ovo je stranica za tehnicku podrsku
+{% endblock description %}
+
+{% block content %}
+    {% include "navbar.html" %}
     <main>
         <!-- Hero Section -->
         <section class="support-hero">
@@ -215,9 +214,10 @@
             </div>
         </section>
     </main>
+    {% include "footer.html" %}
+{% endblock content %}
 
-    <div id="footer-placeholder"></div>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock script %}
 
-    <script src="js/script.js"></script>
-</body>
-</html>

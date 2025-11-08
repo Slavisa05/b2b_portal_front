@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login page</title>
-    <meta name="description" content="ogin stranica za korisnike">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block description %}
+    Ovo je login page
+{% endblock description %}
+
+{% block content %}
     <main>
         <section class="login-section">
             <div class="logo-container">
-                <img src="slike/logo_nobg.png" alt="Logo firme" class="logo">
+                <img src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo firme" class="logo">
             </div>
 
             <div class="login-card">
@@ -68,8 +69,8 @@
             </form>
         </div>
     </div>
+{% endblock content %}
 
-
-    <script src="js/script.js"></script>
-</body>
-</html>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock script %}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
     --primary: #e43f3f;   
     --secondary: #f97316; 
@@ -7,43 +9,43 @@
     --text: #111111;  
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    html {
+    scroll-behavior: smooth;
+    }
 
-body {
-    background-color: var(--bg);
-    color: var(--text); 
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    line-height: 1.4rem;
-    text-align: justify;
-    position: relative;
-}
+    body {
+        background-color: var(--bg);
+        color: var(--text);
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        line-height: 1.4rem;
+        text-align: justify;
+        position: relative;
+    }
 
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem;
-    line-height: 2.5rem;
-}
+    h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+    }
 
-h2 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2rem;
-    line-height: 2rem;
-}
+    h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 2rem;
+        line-height: 2rem;
+    }
 
-h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    line-height: 1.5rem;
-}
+    h3 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+    }
 
 .short {
     width: 80%;
@@ -135,7 +137,7 @@ button, input, textarea, select {
     padding: 0.65rem 1.5rem;
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -161,7 +163,7 @@ button, input, textarea, select {
     padding: 0.6rem 1.5rem;
     border-radius: 8px;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -180,7 +182,8 @@ button, input, textarea, select {
 }
 
 /* NAVBAR */
-nav {
+nav,
+.site-nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -189,6 +192,12 @@ nav {
     top: 0; left: 0; right: 0;
     backdrop-filter: blur(100px);
     transition: all 300ms ease;
+    z-index: 1000;
+}
+
+nav.nav-hidden,
+.site-nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-logo {
@@ -315,7 +324,7 @@ nav {
 }
 
 .login-card {
-    width: 30vw;
+    width: 50vw;
     border-radius: 10px;
     background-color: var(--surface);
     display: flex;
@@ -441,6 +450,7 @@ input {
     color: var(--secondary);
     text-decoration: none;
     font-size: 0.95rem;
+    text-align: center;
 }
 
 .forgot-link:hover {
@@ -965,60 +975,6 @@ footer {
     line-height: 1.2;
 }
 
-/* Phones (<= 599px) */
-@media (max-width: 599px) {
-    .login-section {
-        gap: 60px;
-    }
-    .logo-container {
-        height: 14vh;
-    }
-    .login-card {
-        width: 92vw;
-        max-width: 480px;
-    }
-    .login-card form {
-        width: 100%;
-    }
-    .form-row.remember-forgot {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-}
-
-/* Tablets portrait (600px–899px) */
-@media (min-width: 600px) and (max-width: 899px) {
-    .login-card {
-        width: 85vw;
-        max-width: 560px;
-    }
-}
-
-/* Tablets landscape / small desktops (900px–1199px) */
-@media (min-width: 900px) and (max-width: 1199px) {
-    .login-card {
-        width: 60vw;
-        max-width: 640px;
-    }
-}
-
-/* Desktops (1200px–1535px) */
-@media (min-width: 1200px) and (max-width: 1535px) {
-    .login-card {
-        width: 40vw;
-        max-width: 700px;
-    }
-}
-
-/* Large screens (>= 1536px) */
-@media (min-width: 1536px) {
-    .login-card {
-        width: 32vw;
-        max-width: 760px;
-    }
-}
-
 /* =====================
    Technical Support / Contact Page
    ===================== */
@@ -1323,3 +1279,29 @@ footer {
     line-height: 1.6;
     width: 100%;
 }
+
+/* ========================================== */
+/* ============= RESPONZIVNOST ===============*/
+/* ========================================== */
+
+@media (max-width: 480px) {
+    .login-card {
+        width: 90%;
+    }
+ }
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .login-card {
+        width: 80%;
+    }
+ }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login-card {
+        width: 70%;
+    }
+ }
+
+@media (min-width: 1440px) and (max-width: 1919px) { }
+
+@media (min-width: 1920px) { }

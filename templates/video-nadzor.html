@@ -1,16 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video nadzor | B2B Portal</title>
-    <meta name="description" content="Kompletan asortiman opreme za video nadzor">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/category.css">
-</head>
-<body>
-    <div id="nav-placeholder"></div>
+{% extends "layout.html" %}
 
+{% block title %}
+    Video Nadzor
+{% endblock title %}
+
+{% block description %}
+    Ovo je stranica za video nadzor
+{% endblock description %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/category.css') }}">
+{% endblock style %}
+
+{% block content %}
+    {% include "navbar.html" %}
     <main class="category-page">
         <div class="sidebar">
             <div class="sidebar-header">
@@ -116,7 +119,7 @@
                 <div class="category-grid">
                     <div class="product-card category-card" data-brand="dahua" data-type="dome" data-resolution="2mp" data-price="35000"> 
                         <div class="product-image">
-                            <img src="slike/p3.jpg" alt="Hikvision IP Kamera" />
+                            <img src="{{ url_for('static', filename='slike/p3.jpg') }}" alt="Hikvision IP Kamera" />
                         </div>
 
                         <div class="product-info">
@@ -130,9 +133,9 @@
                         </div>
                     </div>
 
-                    <div class="product-card category-card" data-brand="axis" data-type="ptz" data-resolution="8mp" data-price="80000"> 
+                    <div class="product-card category-card" data-brand="hikvision" data-type="bullet" data-resolution="8mp" data-price="52000"> 
                         <div class="product-image">
-                            <img src="slike/p2.jpg" alt="Hikvision IP Kamera" />
+                            <img src="{{ url_for('static', filename='slike/p4.jpg') }}" alt="Hikvision IP Kamera" />
                         </div>
 
                         <div class="product-info">
@@ -146,9 +149,9 @@
                         </div>
                     </div>
 
-                    <div class="product-card category-card" data-brand="hikvision" data-type="bullet" data-resolution="4mp" data-price="45000"> 
+                    <div class="product-card category-card" data-brand="dahua" data-type="bullet" data-resolution="4mp" data-price="28000"> 
                         <div class="product-image">
-                            <img src="slike/p1.jpg" alt="Hikvision IP Kamera" />
+                            <img src="{{ url_for('static', filename='slike/p2.jpg') }}" alt="Hikvision IP Kamera" />
                         </div>
 
                         <div class="product-info">
@@ -162,9 +165,9 @@
                         </div>
                     </div>
 
-                    <div class="product-card category-card" data-brand="hikvision" data-type="bullet" data-resolution="4mp" data-price="45000"> 
+                    <div class="product-card category-card" data-brand="hikvision" data-type="ptz" data-resolution="2mp" data-price="45000"> 
                         <div class="product-image">
-                            <img src="slike/p4.jpg" alt="Hikvision IP Kamera" />
+                            <img src="{{ url_for('static', filename='slike/p1.jpg') }}" alt="Hikvision IP Kamera" />
                         </div>
 
                         <div class="product-info">
@@ -182,9 +185,10 @@
         </div>
     </main>
 
-    <div id="footer-placeholder"></div>
+    {% include "footer.html" %}
+{% endblock content %}
 
-    <script src="js/script.js"></script>
-    <script src="js/category.js"></script>
-</body>
-</html>
+{% block script %}
+    <script src="{{ url_for('static', filename='js/category.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% endblock script %}

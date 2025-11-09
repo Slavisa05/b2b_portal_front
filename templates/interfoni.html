@@ -16,9 +16,25 @@
     {% include "navbar.html" %}
 
     <main class="category-page">
-        <div class="sidebar">
+        <!-- Filter Toggle Button for Mobile -->
+        <button class="filter-toggle-btn" id="filterToggleBtn" aria-label="Prikaži filtere">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+            <span>Filteri</span>
+        </button>
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="filter-overlay" id="filterOverlay"></div>
+
+        <div class="sidebar" id="filterSidebar">
             <div class="sidebar-header">
                 <h3>Kategorije proizvoda</h3>
+                <button class="filter-close-btn" id="filterCloseBtn" aria-label="Zatvori filtere">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
             <div class="filter-section">
                 <h4>Filtriraj po brendu</h4>
@@ -106,6 +122,9 @@
             </div>
 
             <button class="filter-clear">Poništi filtere</button>
+            
+            <!-- Apply Filters Button (Mobile Only) -->
+            <button class="filter-apply-btn" id="filterApplyBtn">Primeni filtere</button>
         </div>
 
         <div class="content-area">

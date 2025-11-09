@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Initialize navbar scroll behavior
 	initNavbarScroll();
 	
+	// Initialize mobile navigation
+	initMobileNav();
+	
 	// Initialize password toggle (if on login page)
 	initPasswordToggle();
 	
@@ -17,6 +20,74 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Initialize support form (if on support page)
 	initSupportForm();
 });
+
+// Initialize mobile navigation hamburger menu
+function initMobileNav() {
+	console.log('Initializing mobile navigation...');
+	
+	const hamburgerBtn = document.getElementById('hamburger-btn');
+	const mobileNavSidebar = document.getElementById('mobile-nav-sidebar');
+	const mobileNavClose = document.getElementById('mobile-nav-close');
+	const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+	
+	if (!hamburgerBtn || !mobileNavSidebar || !mobileNavClose || !mobileNavOverlay) {
+		console.log('Mobile nav elements not found');
+		return;
+	}
+	
+	console.log('Mobile nav elements found, setting up...');
+	
+	function openMobileNav() {
+		mobileNavSidebar.classList.add('active');
+		mobileNavOverlay.classList.add('active');
+		hamburgerBtn.setAttribute('aria-expanded', 'true');
+		document.body.style.overflow = 'hidden'; // Prevent background scroll
+		console.log('Mobile nav opened');
+	}
+	
+	function closeMobileNav() {
+		mobileNavSidebar.classList.remove('active');
+		mobileNavOverlay.classList.remove('active');
+		hamburgerBtn.setAttribute('aria-expanded', 'false');
+		document.body.style.overflow = ''; // Restore scroll
+		console.log('Mobile nav closed');
+	}
+	
+	// Open on hamburger click
+	hamburgerBtn.addEventListener('click', function() {
+		console.log('Hamburger clicked');
+		openMobileNav();
+	});
+	
+	// Close on close button click
+	mobileNavClose.addEventListener('click', function() {
+		console.log('Mobile nav close clicked');
+		closeMobileNav();
+	});
+	
+	// Close on overlay click
+	mobileNavOverlay.addEventListener('click', function() {
+		console.log('Overlay clicked');
+		closeMobileNav();
+	});
+	
+	// Close on nav link click
+	const mobileNavLinks = mobileNavSidebar.querySelectorAll('.mobile-nav-links a');
+	mobileNavLinks.forEach(link => {
+		link.addEventListener('click', function() {
+			closeMobileNav();
+		});
+	});
+	
+	// Close on Escape key
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape' && mobileNavSidebar.classList.contains('active')) {
+			closeMobileNav();
+		}
+	});
+	
+	console.log('Mobile navigation initialized');
+}
 
 // Initialize navbar scroll hide/show behavior
 function initNavbarScroll() {

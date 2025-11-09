@@ -6,6 +6,56 @@
     min-height: calc(100vh - 200px);
     padding: 20px 5vw;
     gap: 40px;
+    position: relative;
+}
+
+/* Filter Toggle Button (Hidden on Desktop) */
+.filter-toggle-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.filter-toggle-btn:hover {
+    background: var(--hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* Filter Overlay */
+.filter-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.filter-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .sidebar {
@@ -14,18 +64,37 @@
     border-radius: 12px;
     height: fit-content;
     position: sticky;
-    top: 0;
+    top: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .sidebar-header {
     padding: 20px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sidebar-header h3 {
     font-size: 1.2rem;
     color: var(--text);
+}
+
+/* Filter Close Button (Hidden on Desktop) */
+.filter-close-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.filter-close-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text);
 }
 
 .filter-section {
@@ -114,6 +183,26 @@
 .filter-clear:hover {
     background: var(--primary);
     color: white;
+}
+
+/* Apply Filters Button (Mobile Only) */
+.filter-apply-btn {
+    display: none;
+    width: calc(100% - 40px);
+    margin: 0 20px 20px 20px;
+    padding: 12px;
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.filter-apply-btn:hover {
+    background: var(--hover);
 }
 
 /* Category Pages Layout */
@@ -304,3 +393,286 @@
     background: var(--bg);
     font-size: 0.9rem;
 }
+
+/* ========================================== */
+/* ============= RESPONZIVNOST ===============*/
+/* ========================================== */
+
+/* Mobile Phones - Portrait & Landscape */
+@media (max-width: 480px) {
+    .category-page {
+        padding: 10px 5vw;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* Show filter toggle button */
+    .filter-toggle-btn {
+        display: flex;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+
+    .filter-toggle-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Show overlay when active */
+    .filter-overlay {
+        display: block;
+    }
+
+    /* Mobile Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 90vw;
+        max-width: 350px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        border-radius: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Show close button on mobile */
+    .filter-close-btn {
+        display: block;
+    }
+
+    /* Show apply button on mobile */
+    .filter-apply-btn {
+        display: block;
+    }
+
+    /* Content area takes full width */
+    .content-area {
+        width: 100%;
+    }
+
+    /* Single column grid on smallest mobile */
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Section header adjustments */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .section-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .sort-options {
+        width: 100%;
+    }
+
+    .sort-options select {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+
+    /* Product card adjustments */
+    .category-card .product-info {
+        padding: 12px;
+    }
+
+    .category-card h4 {
+        font-size: 1rem;
+    }
+
+    .category-card .product-desc {
+        font-size: 0.85rem;
+    }
+
+    .category-card .price {
+        font-size: 1.1rem;
+    }
+
+    .category-card .product-actions {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .category-card .add-to-cart,
+    .category-card .view-details {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Tablets - Portrait */
+@media (min-width: 481px) and (max-width: 767px) {
+    .category-page {
+        padding: 15px 5vw;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Show filter toggle button */
+    .filter-toggle-btn {
+        display: flex;
+    }
+
+    /* Show overlay when active */
+    .filter-overlay {
+        display: block;
+    }
+
+    /* Mobile Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 85vw;
+        max-width: 350px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        border-radius: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Show close button on mobile */
+    .filter-close-btn {
+        display: block;
+    }
+
+    /* Show apply button on mobile */
+    .filter-apply-btn {
+        display: block;
+    }
+
+    /* Content area takes full width */
+    .content-area {
+        width: 100%;
+    }
+
+    /* 2 column grid for larger mobile/small tablets */
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* Section header adjustments */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .sort-options {
+        width: 100%;
+    }
+
+    .sort-options select {
+        width: 100%;
+    }
+
+    /* Product card adjustments */
+    .category-card .product-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tablets - Landscape */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .category-page {
+        padding: 20px 5vw;
+        gap: 30px;
+    }
+
+    /* Show filter toggle button on tablets */
+    .filter-toggle-btn {
+        display: flex;
+    }
+
+    /* Show overlay when active */
+    .filter-overlay {
+        display: block;
+    }
+
+    /* Tablet Sidebar */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 320px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1001;
+        border-radius: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Show close button on tablet */
+    .filter-close-btn {
+        display: block;
+    }
+
+    /* Show apply button on tablet */
+    .filter-apply-btn {
+        display: block;
+    }
+
+    /* Content area takes full width */
+    .content-area {
+        width: 100%;
+    }
+
+    /* 2 column grid on tablets */
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+}
+
+/* Small Laptops */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .category-page {
+        gap: 30px;
+    }
+
+    .sidebar {
+        flex: 0 0 280px;
+    }
+
+    /* 2 column grid for smaller laptops */
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

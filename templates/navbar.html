@@ -1,4 +1,13 @@
 <nav class="site-nav" role="navigation" aria-label="Glavna navigacija">
+    <!-- Hamburger Menu Button -->
+    <button id="hamburger-btn" class="hamburger-btn" aria-label="Otvori meni" aria-expanded="false" aria-controls="mobile-nav-sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+    </button>
+
     <div class="nav-left">
         <a href="homepage.html" class="nav-home" aria-label="Početna">
             <img class="nav-logo" src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo firme">
@@ -12,7 +21,7 @@
             <button type="submit" class="secondary-button">Pretraži</button>
         </form>
 
-        <a class="nav-link" href="video-nadzor.html">Tehnicka podrska</a>
+        <a class="nav-link" href="{{ url_for('tehnickaPodrska') }}">Tehnicka podrska</a>
     </div>
 
     <div class="nav-right">
@@ -48,6 +57,36 @@
         </div>
     </div>
 </nav>
+
+<!-- Mobile Navigation Sidebar -->
+<div id="mobile-nav-overlay" class="mobile-nav-overlay"></div>
+<div id="mobile-nav-sidebar" class="mobile-nav-sidebar" role="dialog" aria-modal="true" aria-label="Mobilni meni">
+    <div class="mobile-nav-header">
+        <img class="nav-logo" src="{{ url_for('static', filename='slike/logo_nobg.png') }}" alt="Logo firme">
+        <button id="mobile-nav-close" class="mobile-nav-close" aria-label="Zatvori meni">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+    <div class="mobile-nav-search">
+        <form role="search" action="/search" method="get">
+            <input name="q" type="search" placeholder="Pretraga proizvoda..." aria-label="Pretraga proizvoda">
+            <button type="submit" class="secondary-button">Pretraži</button>
+        </form>
+    </div>
+
+    <ul class="mobile-nav-links">
+        <li><a href="homepage.html">Početna</a></li>
+        <li><a href="{{ url_for('videoNadzor') }}">Video nadzor</a></li>
+        <li><a href="{{ url_for('interfoni') }}">Interfoni</a></li>
+        <li><a href="{{ url_for('ledPaneli') }}">LED Paneli</a></li>
+        <li><a href="{{ url_for('ledRasveta') }}">LED Rasveta</a></li>
+        <li><a href="{{ url_for('tehnickaPodrska') }}">Tehnička podrška</a></li>
+    </ul>
+</div>
 
 <div class="category-line-hero">
     <a class="category-link" href="{{ url_for('videoNadzor') }}">Video nadzor</a>

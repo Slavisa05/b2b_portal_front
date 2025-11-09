@@ -1,4 +1,46 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Filter Toggle Functionality
+    const filterToggleBtn = document.getElementById('filterToggleBtn');
+    const filterCloseBtn = document.getElementById('filterCloseBtn');
+    const filterApplyBtn = document.getElementById('filterApplyBtn');
+    const filterSidebar = document.getElementById('filterSidebar');
+    const filterOverlay = document.getElementById('filterOverlay');
+
+    const openFilterSidebar = () => {
+        filterSidebar.classList.add('active');
+        filterOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeFilterSidebar = () => {
+        filterSidebar.classList.remove('active');
+        filterOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (filterToggleBtn) {
+        filterToggleBtn.addEventListener('click', openFilterSidebar);
+    }
+
+    if (filterCloseBtn) {
+        filterCloseBtn.addEventListener('click', closeFilterSidebar);
+    }
+
+    if (filterApplyBtn) {
+        filterApplyBtn.addEventListener('click', closeFilterSidebar);
+    }
+
+    if (filterOverlay) {
+        filterOverlay.addEventListener('click', closeFilterSidebar);
+    }
+
+    // Close sidebar on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && filterSidebar.classList.contains('active')) {
+            closeFilterSidebar();
+        }
+    });
+
     // Cache DOM elements
     const categoryGrid = document.querySelector('.category-grid');
     const sortSelect = document.getElementById('sortProducts');
@@ -162,6 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             applyFilters();
+
+            // Close sidebar on mobile after clearing filters
+            if (window.innerWidth < 1024) {
+                closeFilterSidebar();
+            }
         });
     }
 
